@@ -11,6 +11,12 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
+// Check if the agent is logged in and is a Tier 2 agent
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'agent' || $_SESSION['tier'] != '1') {
+    header('Location: login.php');
+    exit();
+}
+
 // Include the database connection
 include 'db_connection.php';
 
